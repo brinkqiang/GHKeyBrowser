@@ -12,6 +12,7 @@
 #ifndef VC_EXTRALEAN
 #define VC_EXTRALEAN            // Exclude rarely-used stuff from Windows headers
 #endif
+
 #include <minmax.h>
 
 #include "targetver.h"
@@ -19,13 +20,6 @@
 #define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS      // some CString constructors will be explicit
 
 // turns off MFC's hiding of some common and often safely ignored warning messages
-#define _AFX_ALL_WARNINGS
-#define _CRT_SECURE_NO_WARNINGS
-//#define _AFXDLL
-
-#define _ATL_CSTRING_EXPLICIT_CONSTRUCTORS	// 某些 CString 构造函数将是显式的
-
-// 关闭 MFC 对某些常见但经常被安全忽略的警告消息的隐藏
 #define _AFX_ALL_WARNINGS
 
 #include <afxwin.h>         // MFC core and standard components
