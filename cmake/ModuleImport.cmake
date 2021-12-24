@@ -125,6 +125,8 @@ macro(ExeImportWin ModulePath DependsLib)
             MESSAGE(STATUS "INCLUDE -> ${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/${subdir}")
             INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/${subdir})
             FILE(GLOB_RECURSE BIN_SOURCES
+            ${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/${subdir}/*.rc
+            ${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/${subdir}/*.ico
             ${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/${subdir}/*.cpp
             ${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/${subdir}/*.cc
             ${CMAKE_CURRENT_SOURCE_DIR}/${ModulePath}/${subdir}/*.c
