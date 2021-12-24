@@ -159,7 +159,6 @@ bool CGHKeyBrowserDlg::RunSshKeyGenOnKey(wchar_t* fileFullPath, HANDLE hPipeWrit
     wchar_t ssh_keygen_path[MAX_PATH];
 
     ExpandEnvironmentStrings(L"%ProgramFiles%\\Git\\usr\\bin\\ssh-keygen.exe", ssh_keygen_path, MAX_PATH);
-    //ExpandEnvironmentStrings(L"C:\\Users\\Paul\\AppData\\Local\\GitHub\\PortableGit_1.7.9.0\\bin\\ssh-keygen.exe", ssh_keygen_path, MAX_PATH);
     if (GetFileAttributes(ssh_keygen_path) == 0xFFFFFFFF) {
         return false;
     }
