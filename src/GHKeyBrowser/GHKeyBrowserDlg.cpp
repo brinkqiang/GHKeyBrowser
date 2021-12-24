@@ -126,6 +126,10 @@ void CGHKeyBrowserDlg::CalcHashByHand(wchar_t* fileFullPath, wchar_t* existingBu
 
     size_t decoded_size;
     char* decoded_data = base64_decode(hash_start, hash_size, &decoded_size);
+    if (nullptr == decoded_data)
+    {
+        return;
+    }
 
     HCRYPTPROV hProv;
     HCRYPTHASH hMD5;
@@ -146,13 +150,15 @@ void CGHKeyBrowserDlg::CalcHashByHand(wchar_t* fileFullPath, wchar_t* existingBu
         fileFullPath);
 
     wcscat(existingBuf, result);
+
+    delete decoded_data;
 }
 
 bool CGHKeyBrowserDlg::RunSshKeyGenOnKey(wchar_t* fileFullPath, HANDLE hPipeWrite)
 {
     wchar_t ssh_keygen_path[MAX_PATH];
 
-    ExpandEnvironmentStrings(L"%ProgramFiles%\\Git\\bin\\ssh-keygen.exe", ssh_keygen_path, MAX_PATH);
+    ExpandEnvironmentStrings(L"%ProgramFiles%\\Git\\usr\\bin\\ssh-keygen.exe", ssh_keygen_path, MAX_PATH);
     //ExpandEnvironmentStrings(L"C:\\Users\\Paul\\AppData\\Local\\GitHub\\PortableGit_1.7.9.0\\bin\\ssh-keygen.exe", ssh_keygen_path, MAX_PATH);
     if (GetFileAttributes(ssh_keygen_path) == 0xFFFFFFFF) {
         return false;
@@ -250,6 +256,9 @@ BOOL CGHKeyBrowserDlg::OnInitDialog()
     }
 
     CString str(utf16buf);
+
+    delete utf16buf;
+
     str.Replace(L"\n", L"\r\n");
 
     CEdit* pEd = (CEdit*)GetDlgItem(IDC_EDIT1);
@@ -283,7 +292,7 @@ void CGHKeyBrowserDlg::OnPaint()
     }
     else
     {
-        CDialogEx::OnPaint();
+        CDialog::OnPaint();
     }
 }
 
